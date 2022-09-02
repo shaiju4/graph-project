@@ -1,0 +1,26 @@
+{
+    "element": "morris-bar-chart",
+    "data": [
+        { "y": "20", "a": "150", "b": "90","d": "80" },
+        { "y": "20", "a": "220","d": "80", "b": "350", "c": "50" },
+        { "y": "20", "a": "80", "b": "300", "c": "240" },
+        { "y": "20", "a": "180", "b": "30", "c": "10" },
+        { "y": "20", "a": "150", "b": "90","d": "80" },
+        { "y": "20", "a": "220","d": "80", "b": "350", "c": "50" },
+        { "y": "20", "a": "80", "b": "300", "c": "240" },
+        { "y": "20", "a": "80", "b": "300", "c": "240" },
+        { "y": "20", "a": "80", "b": "300", "c": "240" },
+        { "y": "20", "a": "80", "b": "300", "c": "240" }
+        
+       
+        
+    ],
+    "xkey": "y",
+    "barSizeRatio": 0.70,
+    "barGap": 3,
+    "resize": true,
+    "responsive": true,
+    "ykeys": ["a", "b", "c","d"],
+    "labels": ["Product A", "Product B", "Product C","product d","Product A", "Product B", "Product C","product d","Product A", "Product B", "Product C","product d"],
+    "barColors": ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
+}

@@ -1,0 +1,132 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<style>
+    p{
+        padding-left: 107px;
+        margin-left: 40px ;
+        margin-top: 40px ;
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Upload your csv file</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="wrapper img" style="background-image: url(static/images/img.jpg);">
+                <div class="row">
+                    <div class="col-md-9 col-lg-7">
+                        {% for message in messages %}
+                            <p class="alert-danger message">{{message}}</p>
+                        {% endfor %}
+                        
+                        <div class="contact-wrap w-100 p-md-5 p-4">
+                            <!-- <h3 class="mb-4">upload csv</h3> -->
+                            <div id="form-message-warning" class="mb-4"></div> 
+                      <div id="form-message-success" class="mb-4">
+                    Your message was sent, thank you!
+                      </div>
+                            <form method="POST" id="contactForm"  class="contactForm" enctype="multipart/form-data" validate>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="label" for="file">csv file</label>
+                                            <input type="file" class="form-control" name="file" id="name" required>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6"> 
+                                        <div class="form-group">
+                                            <label class="label" for="email">Date</label>
+                                            <input type="date" class="form-control" name="date" id="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                        <div class="form-group">
+                                            <label for="lang" class="">Table Name</label>
+                                            <select name="filename" id="" required>
+                                               
+                                                <option value="current_employees">current_employees</option>
+                                                <option value="resigned_employees">resigned_employees</option>
+                                                <option value="resigned_employees">resigned_employees</option>
+
+                                            </select>
+                                           
+                                        </div>
+                                    </div>
+                                        <!--<div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="label" for="subject">Subject</label>
+                                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="label" for="#">Message</label>
+                                            <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="submit" value="submit" class="btn btn-primary">
+                                            <div class="submitting"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- <h1  class="heading-section">Your Files:</h1>
+            {% for detail in details %}
+                    <p>{{detail.file_id}}:{{detail.file}}</p>
+            {% endfor %} -->
+        </div>
+    </div>
+</div>
+
+</section>
+{% if length == 0 %}
+		<p class='message'style="color:rgb(209, 226, 13);margin-top:-95px;font-size: 30px;">NO FILES </p>
+
+{% else %}
+		<table style="margin-top: 50px;">
+			<thead>
+			  <tr>
+				<th>UPLOADED DATE
+				<th>TABLE NAME
+				<th>FILE 
+				
+			</thead>
+			<tbody>
+				{% for detail in details %}
+				 <tr>
+					<td>{{detail.date}}
+					<td>{{detail.table_name}}
+					<td>{{detail.file}}
+				{% endfor %}
+				
+			</tbody>
+		  </table>
+{% endif %} 
+
+
+
+
+{% endblock %}

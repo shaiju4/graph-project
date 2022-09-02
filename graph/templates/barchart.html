@@ -1,0 +1,175 @@
+{% load static %}
+<script src="{% static 'chart/chart-morris/js/vendor-all.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+{% if files == 0 %}
+        
+        <a href="#up"><span style="color:aqua; font-size:50px;margin-left: 50px;">🠕</span></a>  
+        <h1 style="margin-left: 352px;margin-top:133px;color:aqua;">NO Data Available To Show</h1>
+        <form method="POST" id="contactForm"  class="contactForm" enctype="multipart/form-data" style="margin-left: 803px;" validate>
+            {% csrf_token %}
+        <label style="color: #04a9f9;">Per</label>
+        <select class="form-control" name="duration" id="duration" required>
+            <option value="">--------</option>
+            <option value="month">month</option>
+            <option value="year">year</option>
+            <option value="quarter">quarter</option>
+            <option value="other">range</option>
+        </select>
+        <label id="otherName">
+            <label style="color: #04a9f9;">start date</label>
+            <input type="date" name="othername"class="form-control"id='startdate'/>
+            <label style="color: #04a9f9;" >end date</label>
+            <input type="date" name="othername"class="form-control"id="enddate"/>
+            <button type="button" style="color:#04a9f5;margin-top: 5px;margin-top: 10px;margin-left: 54px;padding: 5px;" id="submit">submit</button>
+        </label>
+        </form>
+        <h1 style="margin-left: 324px;margin-top:133px;">{{message}}</h1>
+        
+{% else %}
+    <center><a name="chart"><h1 style="color: #04a9f5;">Bar Chart</h1></a></center>
+    <a href="#up"><span style="color:aqua; font-size:50px;margin-left: 50px;">🠕</span></a>
+    <div style="margin-left: 800px;">
+        
+        <form method="POST" id="contactForm"  class="contactForm" enctype="multipart/form-data" validate>
+            {% csrf_token %}
+        <label style="color: #04a9f9;">Per</label>
+        <select class="form-control" name="duration" id="duration" required>
+            <option value="">--------</option>
+            <option value="month">month</option>
+            <option value="year">year</option>
+            <option value="quarter">quarter</option>
+            <option value="other">range</option>
+        </select>
+        <label id="otherName">
+            <label style="color: #04a9f9;">start date</label>
+            <input type="date" name="othername"class="form-control"id='startdate'/>
+            <label style="color: #04a9f9;" >end date</label>
+            <input type="date" name="othername"class="form-control"id="enddate"/>
+            <button type="button" style="color:#04a9f5;margin-top: 5px;margin-top: 10px;margin-left: 54px;padding: 5px;" id="submit">submit</button>
+        </label>
+        </form>
+        
+    </div>
+    <center><div id="morris-bar-chart1" style="height:300px;width: 800px;margin-left: 50px;"></div></center>
+    {% endif %}
+    </script>
+        <script src="{% static 'chart/chart-morris/js/raphael.min.js' %}"></script>
+        <script src="{% static 'chart/chart-morris/js/morris.min.js' %}"></script>
+
+   
+    <script>
+    </script>
+    <script>
+        function SetChartBar(chart_data) {
+        
+        Morris.Bar(chart_data);
+    }
+        SetChartBar({{ chart_data|safe }});
+    </script>
+    
+    <script>
+        $(document).ready(function(){
+            $('#otherName').hide()
+            $('#duration').change(function(){
+                var value=$('#duration').val();
+                
+                var type='{{type}}';
+               
+                if (value=='other'){
+                    // alert(value)
+                    $('#otherName').show()
+                    $('#submit').click(function(){
+                    var startdate=$('#startdate').val();
+                    var enddate=$('#enddate').val();
+                    // alert(enddate)
+                   
+                    $.ajax({
+                    url:"{% url 'bar' %}",
+                    type:'POST',
+                    data:{
+                        startdate:startdate,
+                        enddate:enddate,
+                        value:'nothing',
+                        type:type
+                    }
+                   
+                }).done(function(response){
+
+                    var json_data=response
+                    $('#bigchart').html("<a name='chart'>"+json_data+"</a>")
+                    
+
+
+
+                })
+            })
+
+
+
+                }else{
+               
+                $.ajax({
+                    url:"{% url 'bar' %}",
+                    type:'POST',
+                    data:{
+                        value:value,
+                        type:type
+                    }
+                 }).done(function(response){
+
+                    var json_data=response
+                    
+                    $('#bigchart').html("<a name='chart'>"+json_data+"</a>")
+                    
+
+
+
+                })
+                
+            }
+                
+            })
+        })
+        
+    </script>
+    <!-- <script>
+        $(document).ready(function(){
+           
+            $('#duration').on('change',function(){
+                if ($(this).val() === 'other'){
+                    
+                }
+            })
+        })
+    </script> -->
+    <!-- <script>
+        $(document).ready(function(){
+
+            $('#submit').click(function(){
+                var startdate=$('#startdate').val();
+                var enddate=$('#enddate').val();
+            
+                var type='{{type}}';
+                $.ajax({
+                    url:"{% url 'bar' %}",
+                    type:'POST',
+                    data:{
+                       
+                        type:type,
+                        startdate:startdate,
+                        enddate:enddate
+                    }
+                }).done(function(response){
+
+                    var json_data=response
+                    $('#bigchart').html("<a name='chart'>"+json_data+"</a>")
+                    
+
+
+
+                })
+                
+            })
+        })
+        
+    </script> -->

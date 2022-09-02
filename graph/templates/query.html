@@ -1,0 +1,267 @@
+
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<section class="ftco-section">
+   
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Customize Your Chart</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="wrapper img" style="background-image: url(static/images/img_2.jpg);">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-7">
+                            {% for message in messages %}
+                                <p class="alert-danger" style="padding-left: 104px;margin: 40px;">{{message}}</p>
+                            {% endfor %}
+                            
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <!-- <h3 class="mb-4">upload csv</h3> -->
+                                <div id="form-message-warning" class="mb-4"></div> 
+                          <!-- <div id="form-message-success" class="mb-4">
+                        Your message was sent, thank you!
+                          </div> -->
+                                <form method="POST" id="contactForm"  class="contactForm" enctype="multipart/form-data" validate>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="lang" class="">Table</label>
+                                            <select class="form-control" name="table" id="table" required>
+                                                <option value="">---------</option>
+                                               
+                                                <option value='current_employees'>current_employees</option>
+                                                <option value='resigned_employees'>resigned_employees</option>
+                                              
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <div class="form-group">
+                                                <label class="" for="month">Date</label>
+                                                <input type="date" class="form-control" name="date" id="date"  required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lang" class="">Type</label>
+                                            <select class="form-control" name="trend" id="type">
+                                                <option value="">--------</option>
+                                                <option value="trend">Trend</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lang" class="">Per</label>
+                                            <select class="form-control" name="per" id="per">
+                                                <option value="">--------</option>
+                                                
+                                                <option value="month">month</option>
+                                                <option value="year">year</option>
+                                                <option value="quarter">quarter</option>
+                                                <option value="other">range</option>
+                                                
+                                            </select>
+                                            <label id="otherName">
+                                                <label style="color: #04a9f9;">start date</label>
+                                                <input type="date" name="startdate"class="form-control"id='startdate'/>
+                                                <label style="color: #04a9f9;" >end date</label>
+                                                <input type="date" name="enddate"class="form-control"id="enddate"/>
+                                                <!-- <button type="button" style="color:#04a9f5;margin-top: 5px;margin-top: 10px;margin-left: 54px;padding: 5px;" id="submit">submit</button> -->
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label for="lang" class="">Aggregation</label>
+                                            <select class="form-control" name="aggregation" id="aggregation">
+                                                <option value="">--------</option>
+                                            
+                                                <option value="count">count</option>
+                                                <option value="count">sum</option>
+                                                <option value="count">avg</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                {% comment %}
+                                        
+                                        <div class="col-md-4">
+                                            <label for="lang" class="label">Groupby</label>
+                                            <select class="form-control" name="languages" id="lang">
+                                                {% for i in details %}
+                                                <option value="javascript">{{i.table_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lang" class="label">Trendby</label>
+                                            <select class="form-control" name="languages" id="lang">
+                                                {% for i in details %}
+                                                <option value="javascript">{{i.table_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        
+                                        
+                                {% endcomment %}
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group" id="groupby">
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group" id="trendby">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- <h1  class="heading-section">Your Files:</h1>
+                {% for detail in details %}
+                        <p>{{detail.file_id}}:{{detail.file}}</p>
+                {% endfor %} -->
+            </div>
+        </div>
+    </div>
+   
+
+
+</section>
+<script src="{% static 'chart/chart-morris/js/vendor-all.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+<center><h1>Bar chart</h1></center>
+<div id="morris-bar-chart" class="staticchart"></div>
+<script>
+function SetChartBar(chart_data) {
+// todo: this can be modify and make it more flexible
+Morris.Line(chart_data);
+}
+</script>
+<script src="{% static 'chart/chart-morris/js/raphael.min.js' %}"></script>
+<script src="{% static 'chart/chart-morris/js/morris.min.js' %}"></script>
+
+<!-- <script src="{% static 'app_assets/js/scripts.js' %}"></script> -->
+<script>
+</script>
+<script>
+function SetChartBar(chart_data) {
+// todo: this can be modify and make it more flexible
+Morris.Bar(chart_data);
+}
+SetChartBar({{ chart_data|safe }});
+</script>
+<script>
+    $(document).ready(function(){
+        $('#otherName').hide()
+        
+        $('#table').click(function(){
+            var table=$('#table').val()
+            var type=$('#type').val()
+            var per=$('#per').val()
+            // if(per=='other'){
+            //     $('#otherName').show()
+            // }
+            // else if(per!='other'){
+            //     $('#otherName').hide()
+            // }
+            var aggregation=$('#aggregation').val()
+            $('#groupby').html(null)
+            $('#trendby').html(null)
+          //   if(table.length===0){
+          // 	  alert('please select table')
+          // 	  return false
+          //   }
+            $.ajax({
+                url:"{% url 'get_column' %}",
+                type:'POST',
+                data:{
+                    table:table
+
+                }
+            }).done(function(response){
+                  var json_data=JSON.parse(response)
+                //   document.write(json_data)
+                  // var div_data="<div class='col-md-4'><label for='lang' class='label'>Table</label></div>"
+              //   for(key in json){
+              // 	  var
+              //   }
+
+                  var div_data = "<hr/><div class='form-group'></div><div class='form-group'><label>Group By:</label><div class='row'>"
+                      div_data+="<div class='col-lg-3'><div class='form-check custom-control custom-checkbox'><select id='group-by'name='groupby'><option value=''>------</option><option value=''>Joining_Date</option>"
+                      div_data += "<option>Division</option><option>Rel_Exp_Till_Date_in_Yrs</option><option>Designation</option><option>Date_of_Birth</option><option>Project_or_Function</option><option>QA_Dev_DB</option><option>Gender</option><option>Source</option>"
+                      div_data += "<option>Full_Time_or_Contractual</option><option>Manager_Name</option>"
+
+                //   for (key in json_data) {
+                //       div_data += "<option>"+json_data[key]['columns']+"</option>"
+                //   }
+                  div_data+="</select></div></div>"
+                  div_data += "</div></div>"
+                  // div_data += "<div class='form-group'><button id='run' class='btn btn-success' type='button'>Run</button></div>"
+
+                  // trendby **********
+
+                  var div1_data = "<hr/><div class='form-group'></div><div class='form-group'><label>Where:</label><div class='row'>"
+                      div1_data+="<div class='col-lg-3'><div class='form-check custom-control custom-checkbox'><select id='trend-by' name='trendby'><option value=''>------</option>"
+                  for (key in json_data) {
+                      div1_data += "<option>"+json_data[key]['columns']+"</option>"
+                  }
+                  div1_data+="</select></div></div>"
+                  div1_data += "</div></div>"
+                  div1_data+="<div><label>condition:</label></div><div class='form-group'style='margin-left:15px;'><input type='text' name='condition' required>"
+                  div1_data += "</div>"
+
+                  div1_data += "<div class='form-group'><button id='run' class='btn btn-success' type='submit'>Run</button></div>"
+                $('#groupby').html(div_data)
+                $('#trendby').html(div1_data)
+              //   $('#hide-button').html(null)
+                
+            })
+           
+            
+
+        })
+        $('#per').change(function(){
+            var per=$('#per').val()
+            if(per=='other'){
+                $('#otherName').show()
+            } else if (per !='other'){
+                $('#otherName').hide()
+            }
+        })
+        $(document).on('click','#run',function(){
+                var trendby=$('#trend-by').val()
+                var groupby=$('#group-by').val()
+                var table=$('#table').val()
+                var type=$('#type').val()
+                var per=$('#per').val()
+                var aggregation=$('#aggregation').val()
+              
+            })
+
+    })
+</script>
+
+{% endblock %}

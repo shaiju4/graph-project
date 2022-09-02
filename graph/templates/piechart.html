@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <a href="{% url 'pay_summary' 'shaiju' %}">my link</a>
+    <form method="POST" id="contactForm"  class="contactForm" enctype="multipart/form-data" validate>
+      {% csrf_token %}
+	    <label id="otherName">
+        <label style="color: #04a9f9;">Start Date</label>
+        <input type="date" name="startdate"class="form-control"id='startdate'/>
+        <label style="color: #04a9f9;" >End Date</label>
+        <input type="date" name="enddate"class="form-control"id="enddate"/>
+        <button type="submit" style="color:#04a9f5;margin-top: 5px;margin-top: 10px;margin-left: 54px;padding: 5px;"id='submit'>Generate Report</button>
+        </label>
+    </form>
+		<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart_pie);
+      function formatData(data,duration) {
+   google.charts.setOnLoadCallback(function () {
+    drawChart_year(data,duration);
+   });
+}
+formatData('nothing','Year')
+	  // google.charts.setOnLoadCallback(drawChart_year('hi'));
+      function drawChart_pie() {
+        var piedata={{pie_data|safe}}
+        var data = google.visualization.arrayToDataTable(piedata);
+		    var options = {
+          title: 'Joining Report by Employee',
+          is3D: true,
+        };
+	
+         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d')); 
+		chart.draw(data, options); 
+		
+    };
+    
+	  function drawChart_year(my_data,duration) {
+        var mydata=my_data;
+        if (mydata=='nothing'){
+          var data={{chart_data|safe}};
+        }else{
+          var data=my_data
+        }
+
+        // alert(mydata)
+        
+
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable(data);
+
+            var options = {title: `Joining Report by Employee(${duration.toUpperCase()})`, isStacked:'percent'};  
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+    </script>
+    {{start_date}}{{end_date}}
+<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+{% for messages in messages %}
+    <p>{{message}}</p>
+{% endfor %}
+
+<label style="color: #04a9f9;">Per</label>
+        <select class="form-control" name="duration" id="duration" required>
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+			    <option value="quarter">Quarter</option>            
+      </select><div id = "container" style = "width: 100%; height: 800px; margin: 0 auto"></div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#duration').change(function(){
+                  var value=$(this).val();
+                  
+                     
+                      $.ajax({
+                      url:"{% url 'bar_duration' %}",
+                      type:'POST',
+                      data:{
+                          value:value,
+
+                          csrfmiddlewaretoken: '{{ csrf_token }}'
+                          
+                      },
+                      success:function(response){
+                              formatData(response,value)
+                      }
+                     
+                  })
+              })
+          
+  
+         
+        });
+  
+      </script>
+  </body>
+</html>
+
+Sent from Mail for Windows
+

@@ -1,0 +1,239 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+    <link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style3.css' %}">  
+{% endblock stylesheets %}
+
+{% block content %}
+    <style>
+        .mychart{
+            height: 200px;
+            width: 250px;
+        }
+    </style>
+    
+    <center><h1 style="color:aqua;padding-top: 28px;">Current Employees</h1></center>
+
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <!--[ daily sales section ] start-->
+                        <div class="col-md-6 col-xl-4">
+                           
+                            <div class="card daily-sales">
+                                <div class="card-block">
+                                    <a href="#chart" name="up"> <h6 class="mb-4">Bar Chart</h6>
+                                   
+                                   <div id="morris-bar-chart"  class="mychart">
+                                    </div></a>
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--[ daily sales section ] end-->
+                        <!--[ Monthly  sales section ] starts-->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card daily-sales">
+                                <div class="card-block">
+                                    <a href="{% url 'pie_chart' 'gender' %}" name="up"> <span>Pie Chart</span>
+                                    <div id="piechart_3d" class="mychart"></div></a>
+                                   
+                                   
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!--[ Monthly  sales section ] end-->
+                        <!--[ year  sales section ] starts-->
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card yearly-sales">
+                                <div class="card-block">
+                                    <h6 class="mb-4">Yearly Sales</h6>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-9">
+                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                    class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$
+                                                8.638.32</h3>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <p class="m-b-0">80%</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress m-t-30" style="height: 7px;">
+                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                             style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card yearly-sales">
+                                <div class="card-block">
+                                    <h6 class="mb-4">Yearly Sales</h6>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-9">
+                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                    class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$
+                                                8.638.32</h3>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <p class="m-b-0">80%</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress m-t-30" style="height: 7px;">
+                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                             style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card yearly-sales">
+                                <div class="card-block">
+                                    <h6 class="mb-4">Yearly Sales</h6>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-9">
+                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                    class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$
+                                                8.638.32</h3>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <p class="m-b-0">80%</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress m-t-30" style="height: 7px;">
+                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                             style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card yearly-sales">
+                                <div class="card-block">
+                                    <h6 class="mb-4">Yearly Sales</h6>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-9">
+                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                    class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$
+                                                8.638.32</h3>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <p class="m-b-0">80%</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress m-t-30" style="height: 7px;">
+                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                             style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div id="bigchart">
+
+                        </div>
+                       
+                    <!-- [ Main Content ] end -->
+                   
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+   
+    </div>
+   
+    <script src="{% static 'chart/chart-morris/js/vendor-all.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'chart/chart-morris/css/morris.css' %}">
+{% if chart is True %}
+<center><h1>Bar chart</h1></center>
+{% endif %}
+<div id="morris-bar-chart" style="height: 300px;width: 300px;"></div>
+
+<script src="{% static 'chart/chart-morris/js/raphael.min.js' %}"></script>
+<script src="{% static 'chart/chart-morris/js/morris.min.js' %}"></script>
+
+            
+<script>
+</script>
+<script>
+function SetChartBar(chart_data) {
+// todo: this can be modify and make it more flexible
+Morris.Bar(chart_data);
+}
+
+SetChartBar({{ chart_data|safe }});
+</script>
+
+<script>
+    $(document).ready(function(){
+       
+        $('.mychart').click(function(){
+            
+           
+            $.ajax({
+                url:"{% url 'bar' %}",
+                type:'POST',
+                data:{
+                    value:'month',
+                    type:'current'
+                }
+                
+            }).done(function(response){
+                var json_data=response
+                $('#bigchart').html("<a name='chart'>"+json_data+"</a>")
+            })
+            
+            
+        })
+    })
+</script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart_pie);
+    function drawChart_pie() {
+        var piedata={{pie_data|safe}}
+        var data = google.visualization.arrayToDataTable(piedata);
+		    var options = {
+          title: 'Joining Report by Gender',
+          is3D: true,
+        };
+	
+         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d')); 
+		chart.draw(data, options); 
+		
+      };
+    </script>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+<!--  -->

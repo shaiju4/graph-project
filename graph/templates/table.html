@@ -1,0 +1,71 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+
+</head>
+<style>
+    .chart{
+        margin-left: 20px;
+        margin-top: 20px;
+		
+		color: chartreuse;
+		float:left
+    }
+
+
+</style>
+
+<a href="#"><p class="chart">Home</p></a><a href="{% url 'upload' %}"><p class="chart">custom chart</p></a>
+<a href="{% url 'upload' %}"><p class="chart">Query Builder chart</p></a><a href="{% url 'upload' %}"><p class="chart">custom chart</p></a>
+<div >
+	<table>
+		<thead>
+			<tr>
+				<th>Emp Code</th>
+				<th>Emp Name</th>
+				<th>Joining Date</th>
+				<th>Division</th>
+				<th>Exp</th>
+                <th>Designation</th>
+				<th>DOB</th>
+				<th>Project</th>
+				<th>QA/Dev/ DB</th>
+				<th>Gender</th>
+                <th>Source</th>
+				<th>Full Time/Contractual</th>
+				<th>Manager Name</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		
+			<tr>
+				<td>{{df1}}</td>
+				<td>{{df2}}</td>
+				<td>{{df3}}</td>
+				<td>{{df4}}</td>
+				<td>{{df5}}</td>
+				<td>{{df6}}</td>
+				<td>{{df7}}</td>
+				<td>{{df8}}</td>
+				<td>{{df9}}</td>
+				<td>{{df10}}</td>
+				<td>{{df11}}</td>
+				<td>{{df12}}</td>
+				<td>{{df13}}</td>
+				
+			</tr>
+	
+		</tbody>
+		
+	</table>
+	<!-- {% for row in excel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+            <br><br>
+	{% endfor %} -->
+</div>

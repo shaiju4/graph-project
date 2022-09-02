@@ -1,0 +1,123 @@
+<style>
+    .dropbtn {
+      
+      margin-left: -11px;
+     
+    }
+    
+    
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: ;
+     
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      margin-left:0px;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 56px;
+      text-decoration: none;
+      display: block;
+      
+    }
+    .downlist{
+      width: 277px;
+    margin-left: -14px;
+    
+    }
+    
+    .downlist:hover {background-color: rgb(231, 219, 219);}
+    
+    .show {display: block;}
+    #mydropdown{
+      width: 60px;
+    }
+    </style>
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a target="_blank" 
+                    class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div>
+                    <span class="b-title"> Charts</span>
+                
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project">
+                        <a href="/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Home</span></a>
+                    </li>
+                    <li data-username="Dashboard charts loaded from a file">
+                       <a href="/que" class="nav-link ">
+                            <span class="pcoded-micon"><i class="feather icon-bar-chart"></i></span>
+                                <span class="pcoded-mtext">Query Chart</span></a>
+                    </li>
+                    <li data-username="Dashboard charts loaded from a file" onclick="myFunction()">
+                    
+                        <a href="#" class="nav-link ">
+                            <div class="dropdown"></div>
+                             <span class="pcoded-micon"><i class="feather icon-bar-chart"></i></span>
+                             <div class="dropdown"></div>
+                                <span class="pcoded-mtext dropbtn" >Custom Chart</span></a>
+                                 <div id="myDropdown" class="dropdown-content">
+                                    <a href="/current" class="downlist">Current employees</a>
+                                    <a href="/resigned" class="downlist">Resigned employees</a>
+                                </div>
+                            </div>
+                     </li>
+                     <div id="form-message-warning" class="mb-4"></div>
+              
+               
+                
+                
+               <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Contact</a>
+                      </div>
+            </div>
+                    
+                    
+                 </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        // window.onclick = function(event) {
+        //   if (!event.target.matches('.dropbtn')) {
+        //     var dropdowns = document.getElementsByClassName("dropdown-content");
+        //     var i;
+        //     for (i = 0; i < dropdowns.length; i++) {
+        //       var openDropdown = dropdowns[i];
+        //       if (openDropdown.classList.contains('show')) {
+        //         openDropdown.classList.remove('show');
+        //       }
+        //     }
+        //   }
+        // }
+        </script>
